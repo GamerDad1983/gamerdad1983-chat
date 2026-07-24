@@ -1,4 +1,11 @@
-ComfyJS.onChat = (user, message, flags) => {
+console.log("Script loaded");
+
+ComfyJS.onConnected = (address, port) => {
+    console.log("Connected to Twitch!", address, port);
+};
+
+ComfyJS.onChat = (user, message, flags, self, extra) => {
+    console.log("CHAT:", user, message);
 
     const chat = document.getElementById("chat");
 
@@ -12,14 +19,8 @@ ComfyJS.onChat = (user, message, flags) => {
 
     chat.prepend(box);
 
-    if(chat.children.length > 6){
-        chat.removeChild(chat.lastChild);
-    }
+    setTimeout(() => box.remove(), 6500);
+};
 
-    setTimeout(()=>{
-        box.remove();
-    },6500);
-
-}
-
+console.log("Joining channel:", CHANNEL);
 ComfyJS.Init(CHANNEL);
