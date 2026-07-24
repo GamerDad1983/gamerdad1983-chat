@@ -1,10 +1,4 @@
-ComfyJS.onConnected = () => {
-    console.log("Connected!");
-};
-
 ComfyJS.onChat = (user, message, flags) => {
-
-    console.log("MESSAGE RECEIVED:", user, message);
 
     const chat = document.getElementById("chat");
 
@@ -18,9 +12,14 @@ ComfyJS.onChat = (user, message, flags) => {
 
     chat.prepend(box);
 
-    setTimeout(() => {
-        box.remove();
-    }, 6500);
-};
+    if(chat.children.length > 6){
+        chat.removeChild(chat.lastChild);
+    }
 
-ComfyJS.Init("gamerdad1983");
+    setTimeout(()=>{
+        box.remove();
+    },6500);
+
+}
+
+ComfyJS.Init(CHANNEL);
