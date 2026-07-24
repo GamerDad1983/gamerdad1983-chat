@@ -1,10 +1,4 @@
-ComfyJS.onConnected = ( address, port ) => {
-    console.log("Connected!");
-};
-
-ComfyJS.onChat = ( user, message, flags, self, extra ) => {
-
-    console.log(user + ": " + message);
+ComfyJS.onChat = (user, message, flags) => {
 
     const chat = document.getElementById("chat");
 
@@ -16,12 +10,16 @@ ComfyJS.onChat = ( user, message, flags, self, extra ) => {
         <div class="text">${message}</div>
     `;
 
-    chat.appendChild(box);
+    chat.prepend(box);
 
-    setTimeout(() => {
+    if(chat.children.length > 6){
+        chat.removeChild(chat.lastChild);
+    }
+
+    setTimeout(()=>{
         box.remove();
-    }, 6000);
+    },6500);
 
-};
+}
 
-ComfyJS.Init("gamerdad1983");
+ComfyJS.Init(CHANNEL);
