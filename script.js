@@ -23,4 +23,4 @@ ComfyJS.onChat = (user, message, flags) => {
     }, 6500);
 };
 
-ComfyJS.Init(CHANNEL);
+ComfyJS.Init("gamerdad1983");
